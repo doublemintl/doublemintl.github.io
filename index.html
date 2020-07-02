@@ -1,0 +1,61 @@
+<?PHP
+	session_start();
+	header("Content-type:text/html;charset=utf-8");
+	$pin_str="";
+	for($i=0; $i<6; $i++){
+		$temp = rand(0, 15);
+		if($temp <=9)
+			$pin_str .= chr(48+$temp);
+		else
+			$pin_str .= chr(65+$temp-10);
+	}
+	
+?>
+
+<html>
+	<head>
+		<meta charset="utf-8">
+		<title>登录</title>
+	</head>
+	<body>
+		<form action="verifyLogin.php" method="post" enctype="multipart/form-data">
+			<div align="center" >
+				<table>
+					<tr>
+						<td>用户名：</td>
+						<td>
+							<input name="username" type="text" >
+						</td>
+					</tr>
+					
+					<tr>
+						<td>密码：</td>
+						<td>
+							<input name="password" type="password" >
+						</td>
+					</tr>
+					<tr>
+						<td>验证码：</td>
+						<td>
+							<input name="pin" type="text" >
+						</td>
+						<td>
+							<img src="createPin.php" alt="" >
+						</td>
+					</tr>
+					<tr>
+						<td>
+							记住密码
+						</td>
+						<td>
+							<input name="rememberpwd" type="checkbox" name="remember">
+						</td>
+					</tr>
+					<tr align="center">
+						<td colspan="3"><input name="btn_login" type="submit" value="登录"></td>
+					</tr>
+				</table>
+			</div>
+		</form>
+	</body>
+</html>
